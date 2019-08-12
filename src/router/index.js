@@ -154,11 +154,7 @@ let router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  // console.log('to:' + to.path)
   if (to.path.startsWith('/login')) {
-    window.localStorage.removeItem('access-user')
-    next()
-  } else if(to.path.startsWith('/register')){
     window.localStorage.removeItem('access-user')
     next()
   } else {

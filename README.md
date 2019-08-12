@@ -1,4 +1,4 @@
-# vvproject
+# jmhproject
 
 > A Vue.js project
 

@@ -5,56 +5,78 @@
         <el-breadcrumb-item :to="{ path: '/'}"><b>首页</b></el-breadcrumb-item>
       </el-breadcrumb>
       <el-col :span="24" class="wrap-main">
-        <section class="chart-container">
-          <el-row>
-            <el-col :span="8">
-              <el-card :body-style="{ padding: '0px'}">
-                <img src="../../assets/images/card.jpg">
-                <div style="padding: 12px;">
-                  <span>标题</span>
-                  <div class="bottom clearfix">
-                    <time class="time">2018-14-19</time>
-                  </div>
-                </div>
-              </el-card>
-            </el-col>
-            <el-col :span="8">
-              <el-card :body-style="{ padding: '0px'}">
-                <img src="../../assets/images/card.jpg">
-                <div style="padding: 12px;">
-                  <span>标题</span>
-                  <div class="bottom clearfix">
-                    <time class="time">2018-14-19</time>
-                  </div>
-                </div>
-              </el-card>
-            </el-col>
-            <el-col :span="8">
-              <el-card :body-style="{ padding: '0px'}">
-                <img src="../../assets/images/card.jpg">
-                <div style="padding: 12px;">
-                  <span>标题</span>
-                  <div class="bottom clearfix">
-                    <time class="time">2018-14-19</time>
-                  </div>
-                </div>
-              </el-card>
-            </el-col>
-            <el-col :span="12">
-              <div id="chartColumn" style="width: 100%; height: 400px;"></div>
-            </el-col>
-            <el-col :span="12">
-              <div id="chartBar" style="width: 100%; height: 400px;"></div>
-            </el-col>
-            <el-col :span="12"></el-col>
-            <el-col :span="12"></el-col>
-            <el-col :span="24"></el-col>
-          </el-row>
-        </section>
+
+
+
       </el-col>
     </el-col>
   </el-row>
 </template>
+<script>
+  import API from '../api/api_user'
+  export default {
+    data() {
+      return {
+        loading: false,
+        account: {
+          loginName: '',
+          loginPwd: ''
+        },
+        rules: {
+          loginName: [
+           { required: true, message: '请输入登录名', trigger: 'blur' },
+          ],
+          loginPwd: [
+             { required: true, message: '请输入密码', trigger: 'blur' },
+          ]
+        },
+        pwdFocus: false,
+        checked: true
+      };
+    },
+    created() {
+      let reg_user = JSON.parse(window.localStorage.getItem('register-user'));
+      if (reg_user) {
+        this.account.loginName = reg_user.loginName;
+        this.account.loginPwd = '';
+        this.pwdFocus = true;
+      }
+    },
+    methods: {
+      handleLogin(formName){
+        let that = this;
+        that.loading = true;
+        let result = {
+          loginName: that.account.loginName,
+           loginPwd: that.account. loginPwd,
+        };
+        that.$refs[formName].validate((valid) => {
+          if (valid) {
+            let status = API.login(result);
+            if(status.statusCode == '0'){
+              that.loading = false;
+              localStorage.setItem('access-user', JSON.stringify(result));
+              window.localStorage.removeItem('register-user');
+              that.$router.push({path: '/'});
+            } else {
+                that.loading = false;
+                that.$message.error("登录失败，账号或密码错误");
+            }
+          } else {
+            that.loading = false;
+            console.log('error submit!!');
+            return false;
+          }
+        });
+
+
+
+
+
+      },
+    }
+  }
+</script>
 <style>
   .time {
     font-size: 13px;
