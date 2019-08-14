@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div  class="body-bg loginPage">
     <div class="header-content">
       <div class="logo-part" >
         <span>浙江军梦网络科技有限公司后台管理系统</span>
@@ -14,11 +14,11 @@
         <el-input type="password" v-model="account.loginPwd" :autofocus="pwdFocus" auto-complete="off" placeholder="请输入登录密码"></el-input>
       </el-form-item>
       <el-form-item style="width:100%;">
-        <el-button type="primary" style="width:100%;background:rgba(0, 128, 0, 1)" @click.native.prevent="handleLogin('account')"  :loading="loading">登录</el-button>
+        <el-button type="primary" style="width:100%;" @click.native.prevent="handleLogin('account')"  :loading="loading">登录</el-button>
       </el-form-item>
     </el-form>
-	<div class="footer">
-      <footer-copyright></footer-copyright>
+  	<div class="footer">
+        <footer-copyright></footer-copyright>
     </div>
   </div>
 </template>
@@ -62,16 +62,19 @@
         };
         that.$refs[formName].validate((valid) => {
           if (valid) {
-            let status = API.login(result);
-            if(status.statusCode == '0'){
-              that.loading = false;
-              localStorage.setItem('access-user', JSON.stringify(result));
-              window.localStorage.removeItem('register-user');
-              that.$router.push({path: '/'});
-            } else {
+            API.login(result).then((res)=>{
+              if(res.statusCode == '0'){
                 that.loading = false;
-                that.$message.error("登录失败，账号或密码错误");
-            }
+                localStorage.setItem('access-user', JSON.stringify(result));
+                window.localStorage.removeItem('register-user');
+                that.$router.push({path: '/'});
+              } else {
+                  that.loading = false;
+                  that.$message.error(res.message);
+                  that.$router.push({path: '/vehicle/list'});
+              }
+            })
+
           } else {
             that.loading = false;
             console.log('error submit!!');
@@ -91,6 +94,13 @@
   body {
     background: #DFE9FB;
   }
+  .body-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/images/background.jpg') no-repeat;
+    background-size:cover;
+}
   .header-content {
     position: fixed;
     top: 0;
@@ -100,11 +110,11 @@
     box-shadow: 0 0 2px #ddd;
   }
   .header-content .logo-part {
-    padding-left: 10px;
+    padding-left: 20px;
     font-size: 18px;
     line-height: 70px;
     color: #fff;
-    background:rgba(0, 128, 0, 1)
+    background:#409EFF
   }
   .header-content .logo-part img {
     vertical-align: middle;
@@ -118,21 +128,19 @@
     margin: 160px auto;
     width: 350px;
     padding: 35px 35px 15px 35px;
-    background: #fff;
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #cac6c6;
-
     background: -ms-linear-gradient(top, #ace, #00C1DE); /* IE 10 */
     background: -moz-linear-gradient(top, #ace, #00C1DE); /*火狐*/
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ace), to(#00C1DE)); /*谷歌*/
     background: -webkit-linear-gradient(top, #ace, #00C1DE); /*Safari5.1 Chrome 10+*/
     background: -o-linear-gradient(top,#ace, #00C1DE); /*Opera 11.10+*/
-
+    opacity:0.8
   }
   .login-container .title {
     margin: 0px auto 40px auto;
     text-align: center;
-    color: #505458;
+    color: #fff;
   }
   .login-container .remember {
     margin: 0px 0px 35px 0px;

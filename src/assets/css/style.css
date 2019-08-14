@@ -53,8 +53,8 @@ ul {
 
 /* top navbar style start */
 .container .topbar-wrap {
-  height: 60px;
-  line-height: 60px;
+  height: 80px;
+  line-height: 80px;
   background: #333744;
   padding: 0px;
 }
@@ -72,14 +72,13 @@ ul {
 .container .topbar-wrap .topbar-logos {
   float: left;
   width: 300px;
-  line-height: 60px;
   font-size: 18px;
 }
 
 .container .topbar-wrap .topbar-logo img, .container .topbar-wrap .topbar-logos img {
-  height: 30px;
-  margin-top: 12px;
-  margin-left: 2px;
+  height: 60px;
+  margin-top: 10px;
+  margin-left: 25px;
 }
 
 .container .topbar-wrap .topbar-title {
@@ -236,7 +235,7 @@ aside .el-submenu .el-menu-item.is-active:hover, aside .el-menu-item.is-active:h
   display: -ms-flexbox;
   display: flex;
   position: absolute;
-  top: 60px;
+  top: 80px;
   bottom: 0px;
   overflow: hidden;
 }

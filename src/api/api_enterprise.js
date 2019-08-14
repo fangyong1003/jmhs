@@ -5,10 +5,10 @@ import * as API from './'
 
 export default {
   //查询列表
-  findList: params => {
-    return API.GET('/json', params)
+  getNewUserCount: params => {
+    return API.GET('/jmh/rms/getNewUserCount', params)
   },
-  findById: id => {
-    return API.GET(`/api/enterprise/list/${id}`)
+  getUserCount:params => {
+    return API.GET(`/jmh/rms/getUserCount`,params)
   }
 }

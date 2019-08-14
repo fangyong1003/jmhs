@@ -2,13 +2,13 @@
   <el-row class="container">
     <!--头部-->
     <el-col :span="24" class="topbar-wrap">
-      <!-- <div class="topbar-logo topbar-btn">
-        <a href="/"><img src="../assets/logo.png" style="padding-left:8px;"></a>
-      </div> -->
-      <div class="topbar-logos">
-        <a href="/" style="color: #fff;margin-left:10px"><span v-show="!$store.state.collapsed">浙江军梦网络科技有限公司后台管理系统</span></a>
+      <div class="topbar-logo topbar-btn">
+        <a href="/"><img src="../assets/images/logo.png" style="padding-left:8px;"></a>
       </div>
-      <!-- <div class="topbar-title">
+      <!-- <div class="topbar-logos">
+        <a href="/" style="color: #fff;margin-left:10px"><span v-show="!$store.state.collapsed">浙江军梦网络科技有限公司后台管理系统</span></a>
+      </div> -->
+      <div class="topbar-title" style="display:none">
         <el-row v-show="$store.state.topNavState==='home'">
           <el-col :span="24">
             <el-menu :default-active="defaultActiveIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" :router="true">
@@ -28,7 +28,7 @@
             </el-menu>
           </el-col>
         </el-row>
-      </div> -->
+      </div>
       <div class="topbar-account topbar-btn">
         <el-dropdown trigger="click">
           <span class="el-dropdown-link userinfo-inner">
@@ -38,7 +38,7 @@
               <div @click="jumpTo('/user/profile')"><span style="color: #555;font-size: 14px;">个人信息</span></div>
             </el-dropdown-item>
             <el-dropdown-item>
-              <div @click="jumpTo('/user/changepwd')"><span style="color: #555;font-size: 14px;">修改密码</span></div>
+              <div @click="jumpTo('/login')"><span style="color: #555;font-size: 14px;">修改密码</span></div>
             </el-dropdown-item>
             <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
@@ -122,7 +122,7 @@
         }).then(() => {
           //确认
           localStorage.removeItem('access-user');
-          that.$router.go('/login'); //用go刷新
+          that.$router.push('/login'); //用go刷新
         }).catch(() => {});
       }
     },
