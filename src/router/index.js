@@ -3,9 +3,9 @@ import Router from 'vue-router'
 import LeftNav from '@/components/nav/leftNav.vue'
 import Home from '@/views/home.vue'
 import Dashboard from '@/views/workbench/dashboard.vue'
-import Mission from '@/views/workbench/mission/mission.vue'
-import Plan from '@/views/workbench/plan.vue'
-import Maillist from '@/views/workbench/maillist.vue'
+import Enterprise from '@/views/workbench/enterprise.vue'
+import Static from '@/views/workbench/static.vue'
+import Armyman from '@/views/workbench/armyman.vue'
 import EnterpriseList from '@/views/enterprise/index.vue'
 import EnterpriseAdd from '@/views/enterprise/add.vue'
 import EnterpriseDetail from '@/views/enterprise/detail.vue'
@@ -50,15 +50,25 @@ let router = new Router({
           ]
         },
         {
-          path: '/mySet',
+          path: '/statistics',
           component: LeftNav,
-          name: '我的设置',
+          name: '信息统计',
+          leaf: true, // 只有一个节点
           iconCls: 'el-icon-menu',
           menuShow: true,
           children: [
-            { path: '/mySet/plan', component: Plan, name: '行程计划', menuShow: true },
-            { path: '/mySet/mission', component: Mission, name: '我的任务', menuShow: true },
-            { path: '/mySet/maillist', component: Maillist, name: '通讯录', menuShow: true }
+            { path: '/statistics', component: Static, name: '信息统计', menuShow: true },
+          ]
+        },
+        {
+          path: '/userManage',
+          component: LeftNav,
+          name: '人员管理',
+          iconCls: 'el-icon-menu',
+          menuShow: true,
+          children: [
+            { path: '/userManage/enterprise', component: Enterprise, name: '企业管理', menuShow: true },
+            { path: '/userManage/armyman', component: Armyman, name: '军人管理', menuShow: true }
           ]
         }
       ]

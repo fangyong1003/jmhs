@@ -10,5 +10,22 @@ export default {
   },
   getUserCount:params => {
     return API.GET(`/jmh/rms/getUserCount`,params)
-  }
+  },
+  getAllUser:params => {
+    return API.GET(`/jmh/rms/getAllUser`,params)
+  },
+  delAllUser:params =>{
+    return API.GET(`jmh/website/deleteVisitor`,params)
+  },
+  getAllCompany:params =>{
+    return API.GET('jmh/rms/getAllCompany',params);
+  },
+  updateCompanyRole:params =>{
+    return API.POST('jmh/rms/updateCompanyRole',params);
+  },
+  newCompanyRole:params =>{
+    return API.POST('jmh/rms/newCompanyRole',params);
+  },
+
+
 }

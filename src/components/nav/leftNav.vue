@@ -29,9 +29,9 @@
       </el-menu>
     </aside>
     <!--右侧内容区-->
-    <section class="content-container">
+    <section class="content-container" >
       <div class="grid-content bg-purple-light">
-        <el-col :span="24" class="content-wrapper">
+        <el-col :span="24" class="content-wrapper" :style="{padding:oo}">
           <transition name="fade" mode="out-in">
             <router-view></router-view>
           </transition>
@@ -45,7 +45,8 @@
     name: 'leftNav',
     data () {
       return {
-        collapsed: this.$store.state.collapsed
+        collapsed: this.$store.state.collapsed,
+        oo:'20px'
       }
     },
     methods: {

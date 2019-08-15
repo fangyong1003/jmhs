@@ -71,7 +71,7 @@
               } else {
                   that.loading = false;
                   that.$message.error(res.message);
-                  that.$router.push({path: '/vehicle/list'});
+                  that.$router.push({path: '/dashboard'});
               }
             })
 
