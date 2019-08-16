@@ -5,15 +5,15 @@
       <el-col :span="24" class="table-wrapper">
         <el-table :data="infoData" stripe style="width: 100%">
           <el-table-column label="序号" prop="id"></el-table-column>
-          <el-table-column label="联系人" prop="userName"></el-table-column>
+          <el-table-column label="ID" prop="id"></el-table-column>
+          <el-table-column label="姓名" prop="userName"></el-table-column>
           <el-table-column label="联系电话" prop="phone"></el-table-column>
-          <el-table-column label="身份" prop="socialId"></el-table-column>
-          <el-table-column label="提交时间" prop="joinTime"></el-table-column>
-          <el-table-column label="状态" prop="content"></el-table-column>
-          <el-table-column label="操作" >
-                  <template slot-scope="scope">
-                      <span class="demonstration" @click="del(scope.row.id)">删除</span>
-                  </template>
+          <el-table-column label="身份证号" prop="socialId"></el-table-column>
+          <el-table-column label="户籍所在地" prop="socialId"></el-table-column>
+          <el-table-column label="提交时间" prop="joinTime">
+            <template slot-scope="scope">
+                {{scope.row.joinTime | formatDateTime}}
+            </template>
           </el-table-column>
         </el-table>
       </el-col>
@@ -71,20 +71,6 @@
        this.currentPage = val;
        this.handleSearch();
       },
-      del(id){
-        let st = new URLSearchParams;
-        st.append("id",id);
-        API.delAllUser(st).then((res)=>{
-          if(res.statusCode=='0'){
-            this.$message({
-               message: '操作成功！',
-               type: 'success'
-             });
-          }else{
-            this.$message.error(res.message);
-          }
-        })
-      }
     }
   }
 </script>

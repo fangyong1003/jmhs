@@ -168,12 +168,12 @@ router.beforeEach((to, from, next) => {
     window.localStorage.removeItem('access-user')
     next()
   } else {
-    // let user = JSON.parse(window.localStorage.getItem('access-user'))
-    // if (!user) {
-    //   next({path: '/login'})
-    // } else {
-    //   next()
-    // }
+    let user = window.sessionStorage.getItem('userName');
+    if (!user) {
+      next({path: '/login'})
+    } else {
+      next()
+    }
     next();
   }
 });

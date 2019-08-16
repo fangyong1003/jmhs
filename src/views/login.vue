@@ -44,34 +44,32 @@
         checked: true
       };
     },
-    created() {
-      let reg_user = JSON.parse(window.localStorage.getItem('register-user'));
-      if (reg_user) {
-        this.account.loginName = reg_user.loginName;
-        this.account.loginPwd = '';
-        this.pwdFocus = true;
-      }
-    },
     methods: {
       handleLogin(formName){
         let that = this;
         that.loading = true;
-        let result = {
-          loginName: that.account.loginName,
-           loginPwd: that.account. loginPwd,
-        };
+        // let params = new FormData();
+        // params.append("loginName",that.account.loginName);
+        // params.append("loginPwd",that.account.loginPwd);
+
+        // let params = {
+        //   loginName:that.account.loginName,
+        //   loginPwd:that.account.loginPwd
+        // }
+
+        //后台post只接受x-wwww-form-urlencoded
+        let params = `loginName=${that.account.loginName}&loginPwd=${that.account.loginPwd}`;
         that.$refs[formName].validate((valid) => {
           if (valid) {
-            API.login(result).then((res)=>{
+            API.login(params).then((res)=>{
               if(res.statusCode == '0'){
                 that.loading = false;
-                localStorage.setItem('access-user', JSON.stringify(result));
-                window.localStorage.removeItem('register-user');
+                sessionStorage.setItem('userName',res.message);
+                that.$store.dispatch('userInfoAction',res.message);
                 that.$router.push({path: '/'});
               } else {
                   that.loading = false;
                   that.$message.error(res.message);
-                  that.$router.push({path: '/dashboard'});
               }
             })
 
@@ -81,11 +79,6 @@
             return false;
           }
         });
-
-
-
-
-
       },
     }
   }

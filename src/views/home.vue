@@ -32,11 +32,8 @@
       <div class="topbar-account topbar-btn">
         <el-dropdown trigger="click">
           <span class="el-dropdown-link userinfo-inner">
-            <i class="iconfont icon-user"></i> {{nickname}}   <i class="el-icon-caret-bottom"></i></span>
+            <i class="iconfont icon-user"></i> 您好，{{nickname}}   <i class="el-icon-caret-bottom"></i></span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>
-              <div @click="jumpTo('/user/profile')"><span style="color: #555;font-size: 14px;">个人信息</span></div>
-            </el-dropdown-item>
             <el-dropdown-item>
               <div @click="jumpTo('/login')"><span style="color: #555;font-size: 14px;">修改密码</span></div>
             </el-dropdown-item>
@@ -121,16 +118,15 @@
           confirmButtonClass: 'el-button--warning'
         }).then(() => {
           //确认
-          localStorage.removeItem('access-user');
-          that.$router.push('/login'); //用go刷新
+          sessionStorage.removeItem('userName');
+          that.$router.push("/login");
         }).catch(() => {});
       }
     },
     mounted() {
-      let user = localStorage.getItem('access-user');
+      let user = sessionStorage.getItem('userName');
       if (user) {
-        user = JSON.parse(user);
-        this.nickname = user.nickname || '';
+        this.nickname = user|| '';
       }
     },
     watch: {

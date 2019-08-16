@@ -345,3 +345,7 @@ aside .el-submenu .el-menu-item.is-active:hover, aside .el-menu-item.is-active:h
   transform: translateX(600px);
 }
 /* sidebar style end */
+.demonstration{
+  color: #409EFF;
+  cursor: pointer;
+}

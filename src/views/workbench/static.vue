@@ -5,11 +5,15 @@
       <el-col :span="24" class="table-wrapper">
         <el-table :data="infoData" stripe style="width: 100%">
           <el-table-column label="序号" prop="id"></el-table-column>
-          <el-table-column label="联系人" prop="userName"></el-table-column>
+          <el-table-column label="联系人" prop="visitorName"></el-table-column>
           <el-table-column label="联系电话" prop="phone"></el-table-column>
-          <el-table-column label="身份" prop="socialId"></el-table-column>
-          <el-table-column label="提交时间" prop="joinTime"></el-table-column>
-          <el-table-column label="状态" prop="content"></el-table-column>
+          <el-table-column label="身份" prop="visitorType"></el-table-column>
+          <el-table-column label="提交时间" prop="sumbitTime">
+            <template slot-scope="scope">
+                {{scope.row.sumbitTime | formatDateTime}}
+            </template>
+          </el-table-column>
+          <el-table-column label="状态" prop="visitorStatus"></el-table-column>
           <el-table-column label="操作" >
                   <template slot-scope="scope">
                       <span class="demonstration" @click="del(scope.row.id)">删除</span>

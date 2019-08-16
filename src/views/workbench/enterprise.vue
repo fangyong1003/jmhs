@@ -15,11 +15,15 @@
           <el-table-column label="联系人" prop="userName"></el-table-column>
           <el-table-column label="联系电话" prop="phone"></el-table-column>
           <el-table-column label="身份" prop="socialId"></el-table-column>
-          <el-table-column label="提交时间" prop="joinTime"></el-table-column>
+          <el-table-column label="提交时间" prop="joinTime">
+            <template slot-scope="scope">
+                {{scope.row.joinTime | formatDateTime}}
+            </template>
+          </el-table-column>
           <el-table-column label="状态" prop="content"></el-table-column>
           <el-table-column label="操作" >
                   <template slot-scope="scope">
-                      <span class="demonstration" @click="edit(scope.row)">删除</span>
+                      <span class="demonstration" @click="edit(scope.row)">编辑</span>
                   </template>
           </el-table-column>
         </el-table>
@@ -36,6 +40,12 @@
       <el-form :model="upform" ref="upform" :rules="rules" label-width="120px">
         <el-form-item label="企业名称：" prop="companyName">
            <el-input v-model="upform.companyName"></el-input>
+         </el-form-item>
+         <el-form-item label="联系人：" prop="companyName">
+            <el-input v-model="upform.companyName"></el-input>
+          </el-form-item>
+        <el-form-item label="电话：" prop="phone">
+           <el-input v-model="upform.phone"></el-input>
          </el-form-item>
          <el-form-item label="企业账号：" prop="account">
             <el-input v-model="upform.account"></el-input>

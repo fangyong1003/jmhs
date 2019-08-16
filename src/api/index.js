@@ -8,8 +8,8 @@ import routerIndex from '../router/index'
 
 axios.defaults.withCredentials = false;
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';//配置请求头
-axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';//配置请求头
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';//配置请求头
+// axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';//配置请求头
 
 //添加一个请求拦截器
 axios.interceptors.request.use(function (config) {
@@ -43,7 +43,11 @@ export const ISDEV = Env.isDev;
 
 //通用方法
 export const POST = (url, params) => {
-  return axios.post(`${base}${url}`, params).then(res => res.data)
+  return axios.post(`${base}${url}`, params, {
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+  },
+}).then(res => res.data)
 }
 
 export const GET = (url, params) => {
