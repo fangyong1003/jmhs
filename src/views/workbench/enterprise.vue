@@ -12,7 +12,7 @@
       <el-col :span="24" class="table-wrapper">
         <el-table :data="infoData" stripe style="width: 100%">
           <el-table-column label="序号" prop="id"></el-table-column>
-          <el-table-column label="联系人" prop="userName"></el-table-column>
+          <el-table-column label="联系人" prop="companyContacts"></el-table-column>
           <el-table-column label="联系电话" prop="phone"></el-table-column>
           <el-table-column label="身份" prop="socialId"></el-table-column>
           <el-table-column label="提交时间" prop="joinTime">
@@ -41,8 +41,8 @@
         <el-form-item label="企业名称：" prop="companyName">
            <el-input v-model="upform.companyName"></el-input>
          </el-form-item>
-         <el-form-item label="联系人：" prop="companyName">
-            <el-input v-model="upform.companyName"></el-input>
+         <el-form-item label="联系人：" prop="companyContacts">
+            <el-input v-model="upform.companyContacts"></el-input>
           </el-form-item>
         <el-form-item label="电话：" prop="phone">
            <el-input v-model="upform.phone"></el-input>
@@ -63,6 +63,12 @@
         <el-form-item label="企业名称：" prop="companyName">
            <el-input v-model="editform.companyName"></el-input>
          </el-form-item>
+         <el-form-item label="联系人：" prop="companyContacts">
+            <el-input v-model="editform.companyContacts"></el-input>
+          </el-form-item>
+          <el-form-item label="电话：" prop="phone">
+             <el-input v-model="editform.phone"></el-input>
+           </el-form-item>
          <el-form-item label="企业账号：" prop="account">
             <el-input v-model="editform.account"></el-input>
           </el-form-item>
@@ -92,18 +98,28 @@
         edittitle:'编辑企业',
         upform:{
           companyName:'',
+          companyContacts:'',
+          phone:'',
           account:'',
           password:'',
         },
         editform:{
           roleId:'',
           companyName:'',
+          companyContacts:'',
+          phone:'',
           account:'',
           password:'',
         },
         rules:{
          companyName:[
            { required: true, message: '请填写企业名称', trigger: 'blur' }
+         ],
+         companyContacts:[
+            { required: true, message: '请填写联系人', trigger: 'blur' }
+         ],
+         phone:[
+            { required: true, message: '请填写联系电话', trigger: 'blur' }
          ],
          account:[
             { required: true, message: '请填写企业账户', trigger: 'blur' }
@@ -149,6 +165,8 @@
         this.editdialog = true;
         this.editform = {
           roleId:obj.companyId,
+          companyContacts:obj.companyContacts,
+          phone:obj.phone,
           companyName:obj.companyName,
           account:obj.account,
           password:obj.password,
@@ -158,6 +176,8 @@
         this.adddialog = true;
         this.upform = {
           companyName:'',
+          companyContacts:'',
+          phone:'',
           account:'',
           password:'',
         }
