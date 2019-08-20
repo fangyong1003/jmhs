@@ -12,15 +12,15 @@
       <el-col :span="24" class="table-wrapper">
         <el-table :data="infoData" stripe style="width: 100%">
           <el-table-column label="序号" type="index"  width="50"></el-table-column>
-          <el-table-column label="联系人" prop="companyContacts"></el-table-column>
-          <el-table-column label="联系电话" prop="phone"></el-table-column>
-          <el-table-column label="身份" prop="socialId"></el-table-column>
-          <el-table-column label="提交时间" prop="joinTime">
+          <el-table-column label="ID" prop="companyRoleId"></el-table-column>
+          <el-table-column label="企业名称" prop="companyName"></el-table-column>
+          <el-table-column label="账号" prop="account"></el-table-column>
+          <el-table-column label="密码" prop="password"></el-table-column>
+          <el-table-column label="录入时间" prop="joinTime">
             <template slot-scope="scope">
                 {{scope.row.joinTime | formatDateTime}}
             </template>
           </el-table-column>
-          <el-table-column label="状态" prop="status"></el-table-column>
           <el-table-column label="操作" >
                   <template slot-scope="scope">
                       <span class="demonstration" @click="edit(scope.row)">编辑</span>

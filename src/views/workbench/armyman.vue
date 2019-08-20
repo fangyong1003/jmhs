@@ -10,6 +10,11 @@
           <el-table-column label="联系电话" prop="phone"></el-table-column>
           <el-table-column label="身份证号" prop="socialId"></el-table-column>
           <el-table-column label="户籍所在地" prop="resident"></el-table-column>
+          <el-table-column label="军官证件照" prop="resident">
+            <template slot-scope="scope">
+                <a target="_blank" class="demonstration" :href="scope.row.officerImage">查看</a>
+            </template>
+          </el-table-column>
           <el-table-column label="提交时间" prop="joinTime">
             <template slot-scope="scope">
                 {{scope.row.joinTime | formatDateTime}}
