@@ -4,13 +4,13 @@
       <!--表格数据-->
       <el-col :span="24" class="table-wrapper">
         <el-table :data="infoData" stripe style="width: 100%">
-          <el-table-column label="序号" prop="id"></el-table-column>
+          <el-table-column label="序号" type="index"  width="50"></el-table-column>
           <el-table-column label="联系人" prop="visitorName"></el-table-column>
           <el-table-column label="联系电话" prop="phone"></el-table-column>
           <el-table-column label="身份" prop="visitorType"></el-table-column>
-          <el-table-column label="提交时间" prop="sumbitTime">
+          <el-table-column label="提交时间" prop="joinTime">
             <template slot-scope="scope">
-                {{scope.row.sumbitTime | formatDateTime}}
+                {{scope.row.joinTime | formatDateTime}}
             </template>
           </el-table-column>
           <el-table-column label="状态" prop="visitorStatus"></el-table-column>

@@ -4,12 +4,12 @@
       <!--表格数据-->
       <el-col :span="24" class="table-wrapper">
         <el-table :data="infoData" stripe style="width: 100%">
-          <el-table-column label="序号" prop="id"></el-table-column>
-          <el-table-column label="ID" prop="id"></el-table-column>
+          <el-table-column label="序号" type="index"  width="50"></el-table-column>
+          <el-table-column label="ID" prop="userId"></el-table-column>
           <el-table-column label="姓名" prop="userName"></el-table-column>
           <el-table-column label="联系电话" prop="phone"></el-table-column>
           <el-table-column label="身份证号" prop="socialId"></el-table-column>
-          <el-table-column label="户籍所在地" prop="socialId"></el-table-column>
+          <el-table-column label="户籍所在地" prop="resident"></el-table-column>
           <el-table-column label="提交时间" prop="joinTime">
             <template slot-scope="scope">
                 {{scope.row.joinTime | formatDateTime}}

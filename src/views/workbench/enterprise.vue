@@ -11,7 +11,7 @@
       </el-col>
       <el-col :span="24" class="table-wrapper">
         <el-table :data="infoData" stripe style="width: 100%">
-          <el-table-column label="序号" prop="id"></el-table-column>
+          <el-table-column label="序号" type="index"  width="50"></el-table-column>
           <el-table-column label="联系人" prop="companyContacts"></el-table-column>
           <el-table-column label="联系电话" prop="phone"></el-table-column>
           <el-table-column label="身份" prop="socialId"></el-table-column>
@@ -20,7 +20,7 @@
                 {{scope.row.joinTime | formatDateTime}}
             </template>
           </el-table-column>
-          <el-table-column label="状态" prop="content"></el-table-column>
+          <el-table-column label="状态" prop="status"></el-table-column>
           <el-table-column label="操作" >
                   <template slot-scope="scope">
                       <span class="demonstration" @click="edit(scope.row)">编辑</span>
@@ -164,7 +164,7 @@
       edit(obj){
         this.editdialog = true;
         this.editform = {
-          roleId:obj.companyId,
+          roleId:obj.companyRoleId,
           companyContacts:obj.companyContacts,
           phone:obj.phone,
           companyName:obj.companyName,
@@ -183,9 +183,10 @@
         }
       },
       submits(formName){
+        let params = `companyName=${this.upform.companyName}&companyContacts=${this.upform.companyContacts}&phone=${this.upform.phone}&account=${this.upform.account}&password=${this.upform.password}`;
         this.$refs[formName].validate((valid) => {
               if (valid) {
-                API.newCompanyRole(this.upform).then((res)=>{
+                API.newCompanyRole(params).then((res)=>{
                   if(res.statusCode=='0'){
                     this.$message({
                       type: 'success',
@@ -207,9 +208,10 @@
             });
       },
       submit(formName){
+        let params = `companyName=${this.editform.companyName}&companyContacts=${this.editform.companyContacts}&phone=${this.editform.phone}&account=${this.editform.account}&password=${this.editform.password}&roleId=${this.editform.roleId}`;
         this.$refs[formName].validate((valid) => {
               if (valid) {
-                API.updateCompanyRole(this.editform).then((res)=>{
+                API.updateCompanyRole(params).then((res)=>{
                   if(res.statusCode=='0'){
                     this.$message({
                       type: 'success',
