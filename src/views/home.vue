@@ -12,19 +12,10 @@
         <el-row v-show="$store.state.topNavState==='home'">
           <el-col :span="24">
             <el-menu :default-active="defaultActiveIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" :router="true">
-              <el-menu-item index="/">工作台</el-menu-item>
+              <el-menu-item index="/dashboard">工作台</el-menu-item>
               <el-menu-item index="/enterpriseManager">企业管理</el-menu-item>
               <el-menu-item index="/orderManager">订单管理</el-menu-item>
               <el-menu-item index="/systemManager">系统管理</el-menu-item>
-            </el-menu>
-          </el-col>
-        </el-row>
-        <el-row v-show="$store.state.topNavState==='enterprise'">
-          <el-col :span="24">
-            <el-menu :default-active="defaultActiveIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" :router="true">
-              <el-menu-item index="/enterpriseManager">企业信息</el-menu-item>
-              <el-menu-item index="/vehicleManager">车辆信息</el-menu-item>
-              <el-menu-item index="/deptManager">组织架构</el-menu-item>
             </el-menu>
           </el-col>
         </el-row>
@@ -34,9 +25,9 @@
           <span class="el-dropdown-link userinfo-inner">
             <i class="iconfont icon-user"></i> 您好，{{nickname}}   <i class="el-icon-caret-bottom"></i></span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>
+            <!-- <el-dropdown-item>
               <div @click="jumpTo('/login')"><span style="color: #555;font-size: 14px;">修改密码</span></div>
-            </el-dropdown-item>
+            </el-dropdown-item> -->
             <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
