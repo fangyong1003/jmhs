@@ -7,10 +7,17 @@
           <el-table-column label="序号" type="index"  width="50"></el-table-column>
           <el-table-column label="联系人" prop="visitorName"></el-table-column>
           <el-table-column label="联系电话" prop="phone"></el-table-column>
-          <el-table-column label="身份" prop="visitorType"></el-table-column>
-          <el-table-column label="提交时间" prop="joinTime">
+          <el-table-column label="身份">
             <template slot-scope="scope">
-                {{scope.row.joinTime | formatDateTime}}
+                <span v-if="scope.row.visitorType=='1'">企业</span>
+                <span v-if="scope.row.visitorType=='2'">培训机构</span>
+                <span v-if="scope.row.visitorType=='3'">导师</span>
+                <span v-if="scope.row.visitorType=='4'">合伙人</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="提交时间" prop="sumbitTime">
+            <template slot-scope="scope">
+                {{scope.row.sumbitTime | formatDateTime}}
             </template>
           </el-table-column>
           <el-table-column label="状态" prop="visitorStatus"></el-table-column>
@@ -54,7 +61,7 @@
         let params = new URLSearchParams;
         params.append("pageSize",this.pageSize);
         params.append("currentPage",this.currentPage);
-        API.getAllUser(params).then((res)=>{
+        API.getAllVisitor(params).then((res)=>{
           if(res.statusCode=='0'){
             this.loading=false;
             this.total = Number(res.total);
@@ -84,6 +91,7 @@
                message: '操作成功！',
                type: 'success'
              });
+             this.handleSearch();
           }else{
             this.$message.error(res.message);
           }

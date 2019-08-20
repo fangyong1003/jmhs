@@ -11,8 +11,11 @@ export default {
   getUserCount:params => {
     return API.GET(`/jmh/rms/getUserCount`,params)
   },
-  getAllUser:params => {
-    return API.GET(`/jmh/rms/getAllUser`,params)
+  getAllVisitor:params => {
+    return API.GET(`/jmh/website/getAllVisitor`,params)
+  },
+  getAllUser:params =>{
+      return API.GET(`  /jmh/rms/getAllUser`,params)
   },
   delAllUser:params =>{
     return API.GET(`jmh/website/deleteVisitor`,params)
