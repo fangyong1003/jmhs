@@ -9,10 +9,10 @@
           <el-table-column label="联系电话" prop="phone"></el-table-column>
           <el-table-column label="身份">
             <template slot-scope="scope">
-                <span v-if="scope.row.visitorType=='1'">企业</span>
-                <span v-if="scope.row.visitorType=='2'">培训机构</span>
-                <span v-if="scope.row.visitorType=='3'">导师</span>
-                <span v-if="scope.row.visitorType=='4'">合伙人</span>
+              <span v-if="scope.row.visitorType=='C'">企业</span>
+              <span v-if="scope.row.visitorType=='D'">培训机构</span>
+              <span v-if="scope.row.visitorType=='B'">导师</span>
+              <span v-if="scope.row.visitorType=='A'">合伙人</span>
             </template>
           </el-table-column>
           <el-table-column label="提交时间" prop="sumbitTime">
